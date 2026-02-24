@@ -1,0 +1,19 @@
+---
+jenkins:
+  systemMessage: "IT works !!!!!"
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              scope: GLOBAL
+              id: ACR_CREDENTIALS
+              username: {{ lookup('env', 'ACR_USERNAME') }}
+              password: {{ lookup('env', 'ACR_PASSWORD') }}
+              description: "azure container registery credentials"
+
+jobs:
+  - file: /var/jenkins_home/dsl/createPipeline_stock_service_job.groovy
+  - file: /var/jenkins_home/dsl/createPipeline_cart_service_job.groovy
+  - file: /var/jenkins_home/dsl/createPipeline_transaction_service_job.groovy
+  - file: /var/jenkins_home/dsl/createPipeline_frontend_job.groovy
