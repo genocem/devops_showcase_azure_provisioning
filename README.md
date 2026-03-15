@@ -1,25 +1,47 @@
-# Jenkins Azure Provisioning 
-This project uses Terraform to create a VM in azure and set it up to enable ansible to install Docker, runs Jenkins in a container, and configures it with plugins and pipelines.
+# Azure Provisioning
+
+Terraform and Ansible automation for Azure infrastructure: VM provisioning, Jenkins setup with Docker, and CI/CD pipeline configuration.
+
+## Architecture Diagram
+
+<!-- TODO: Add architecture diagram showing Azure resources and their connections -->
+
+## Components
+
+- Terraform - Azure VM provisioning
+- Ansible - Configuration management
+  - Docker installation
+  - Jenkins container setup
+  - Plugin installation
+  - Pipeline configuration
+
+## Infrastructure Diagram
+
+<!-- TODO: Add diagram showing Terraform modules and resource relationships -->
 
 ## Prerequisites
 
-- Terraform and Ansible installed
+- Terraform installed
+- Ansible installed
 - Azure CLI authenticated (`az login`)
 - SSH keys at `~/.ssh/id_rsa` and `~/.ssh/id_rsa.pub`
-- Vault in ansible/secrets.yaml that contains secrets:
-    - in my case it contains:
-      - jenkins_account_username 
-      - jenkins_account_password  
-      - gitlab_stageDevops_commercial_token (for the first pipeline)
-      - gitlab_reclamation_token (for the second pipeline)
-- Vault password in `ansible/.vault_pass`
+- Ansible vault with secrets in `ansible/secrets.yaml`
+- Vault password file at `ansible/.vault_pass`
 
-## Secrets
-Create a secrets file:
+## Required Secrets
+
+Create vault file:
 ```bash
 ansible-vault create ansible/secrets.yaml
 ```
-Edit encrypted secrets (you have to manually create the vault password file):
+
+Required variables:
+- `jenkins_account_username`
+- `jenkins_account_password`
+- `gitlab_stageDevops_commercial_token`
+- `gitlab_reclamation_token`
+
+Edit secrets:
 ```bash
 ansible-vault edit ansible/secrets.yaml --vault-password-file ansible/.vault_pass
 ```
@@ -27,15 +49,36 @@ ansible-vault edit ansible/secrets.yaml --vault-password-file ansible/.vault_pas
 ## Usage
 
 ```bash
-# Provision infrastructure
 cd terraform
 terraform init
 terraform apply
-# you'll have to set the variables ssh_enabled to run ansible configuration
-
-# ansible will run automatically after the vm gets created
-
-# Access Jenkins
-# http://<VM_IP>:8080
+# Set ssh_enabled variable to run Ansible configuration
+# Ansible runs automatically after VM creation
 ```
 
+Access Jenkins at `http://<VM_IP>:8080`
+
+## Terraform Modules
+
+| Module | Purpose |
+|--------|---------|
+| acr_module | Azure Container Registry |
+| aks_cluster | Azure Kubernetes Service |
+| jenkins_vm | Jenkins VM provisioning |
+
+## Ansible Roles
+
+| Role | Purpose |
+|------|---------|
+| docker_setup | Docker installation |
+| jenkins_container_setup | Jenkins container deployment |
+| jenkins_plugins | Plugin installation |
+| jenkins_add_pipelines | Pipeline configuration |
+
+## Deployment Flow Diagram
+
+<!-- TODO: Add diagram showing the deployment flow from Terraform to Ansible -->
+
+## License
+
+MIT License
