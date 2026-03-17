@@ -68,9 +68,6 @@ Access Jenkins at `http://<VM_IP>:8080`
 | jenkins_plugins | Plugin installation |
 | jenkins_add_pipelines | Pipeline configuration |
 
-## Deployment Flow Diagram
-
-<!-- TODO: Add diagram showing the deployment flow from Terraform to Ansible -->
 
 ## License
 
