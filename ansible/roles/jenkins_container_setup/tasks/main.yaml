@@ -46,6 +46,5 @@
       JAVA_OPTS: -Djenkins.install.runSetupWizard=false
     command: >
       bash -c "jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt &&
-      curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v0.69.1 &&
       exec /usr/bin/tini -- /usr/local/bin/jenkins.sh
       "
