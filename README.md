@@ -12,10 +12,6 @@ Terraform and Ansible automation for Azure infrastructure: VM provisioning, Jenk
   - Plugin installation
   - Pipeline configuration
 
-## Infrastructure Diagram
-
-<!-- TODO: Add diagram showing Terraform modules and resource relationships -->
-
 ## Prerequisites
 
 - Terraform installed
