@@ -2,9 +2,6 @@
 
 Terraform and Ansible automation for Azure infrastructure: VM provisioning, Jenkins setup with Docker, and CI/CD pipeline configuration.
 
-## Architecture Diagram
-
-<!-- TODO: Add architecture diagram showing Azure resources and their connections -->
 
 ## Components
 
